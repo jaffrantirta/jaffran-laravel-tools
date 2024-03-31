@@ -295,6 +295,12 @@ This command will create the permission and the role if its not yet in the datab
 
 You know that boring feelings of creating that basic CRUD files? from model, migration, factories, controller, routes, requests and policies? almost everything is the same except for the model it process right, so you do you actually need to type them out every time you creating a simple CRUD? well now you can skip that altogether with this package's CRUD generator! Simply run the command
 
+> if you will using API configuration ensure for install api package for Laravel 11 before run `genarete:all`
+
+```
+php artisan install:api
+```
+
 ```
 php artisan generate:all {Name}
 ```

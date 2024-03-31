@@ -76,9 +76,6 @@ class GenerateCrudCommand extends Command
         $apiRoutesPath = base_path('routes/api.php');  // Path to the API routes file
         $content = File::get($apiRoutesPath);  // Read the content of the API routes file
         $newContent = $content . "\n" . $route;  // Append the custom route to the existing content
-        if (!File::exists($apiRoutesPath)) {
-            Artisan::call('install:api');  // call artisan to install api in laravell 11
-        }
         File::put($apiRoutesPath, $newContent);  // Write the updated content back to the API routes file
         $this->info('Route created');
     }
