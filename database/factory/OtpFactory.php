@@ -1,6 +1,6 @@
 <?php
 
-namespace Dwikipeddos\PeddosLaravelTools\Database\Factories;
+namespace Jaffran\PeddosLaravelTools\Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;

@@ -1,10 +1,10 @@
 <?php
 
-namespace Dwikipeddos\PeddosLaravelTools\Commands;
+namespace Jaffran\PeddosLaravelTools\Commands;
 
-use Dwikipeddos\PeddosLaravelTools\Actions\GenerateFileFromStubAction;
-use Exception;
 use Illuminate\Console\Command;
+use Jaffran\PeddosLaravelTools\Actions\GenerateFileFromStubAction;
+use Exception;
 
 class GenerateEnumCommand extends Command
 {
@@ -29,7 +29,7 @@ class GenerateEnumCommand extends Command
     {
         try {
             $name = $this->argument('name');
-            $action->execute("", "Enum", "Enums/", $name);
+            $action->execute('', 'Enum', 'Enums/', $name);
             $this->info("$name Enum has been fully generated!");
             return Command::SUCCESS;
         } catch (Exception $e) {

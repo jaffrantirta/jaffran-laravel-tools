@@ -1,20 +1,19 @@
 <?php
 
-namespace Dwikipeddos\PeddosLaravelTools\Traits;
+namespace Jaffran\PeddosLaravelTools\Traits;
 
 use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 trait HasSingleImage
 {
     use InteractsWithMedia;
 
-    public string $defaultSingleImageName = "image";
-    public string $defaultThumbnailName = "thumb";
-
-    public string $defaultSingleImage = "https://www.pngkey.com/png/full/233-2332677_image-500580-placeholder-transparent.png";
-    public string $defaultThumbnail = "https://www.pngkey.com/png/full/233-2332677_image-500580-placeholder-transparent.png";
+    public string $defaultSingleImageName = 'image';
+    public string $defaultThumbnailName = 'thumb';
+    public string $defaultSingleImage = 'https://www.pngkey.com/png/full/233-2332677_image-500580-placeholder-transparent.png';
+    public string $defaultThumbnail = 'https://www.pngkey.com/png/full/233-2332677_image-500580-placeholder-transparent.png';
 
     public function getSingleImageName()
     {
@@ -28,13 +27,15 @@ trait HasSingleImage
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection($this->getSingleImageName())
+        $this
+            ->addMediaCollection($this->getSingleImageName())
             ->singleFile();
     }
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        $this->addMediaConversion($this->getThumbnailName())
+        $this
+            ->addMediaConversion($this->getThumbnailName())
             ->fit(Manipulations::FIT_CONTAIN, 100, 100);
     }
 
@@ -43,6 +44,7 @@ trait HasSingleImage
         return $this->getFirstMedia($this->getSingleImageName())?->getUrl()
             ?? $this->defaultSingleImage;
     }
+
     public function getSingleImageThumbnail()
     {
         return $this->getFirstMedia($this->getSingleImageName())?->getUrl($this->getThumbnailName())

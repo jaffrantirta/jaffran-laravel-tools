@@ -1,9 +1,9 @@
 <?php
 
-namespace Dwikipeddos\PeddosLaravelTools\Queries\Customs;
+namespace Jaffran\PeddosLaravelTools\Queries\Customs;
 
-use Dwikipeddos\PeddosLaravelTools\Datas\LatLng;
 use Illuminate\Database\Eloquent\Builder;
+use Jaffran\PeddosLaravelTools\Datas\LatLng;
 use Spatie\QueryBuilder\Sorts\Sort;
 
 class DistanceSort implements Sort
@@ -11,7 +11,7 @@ class DistanceSort implements Sort
   public function __invoke(Builder $builder, bool $descending, string $property)
   {
     $latlng = LatLng::fromString($property);
-    $direction = $descending ? "DESC" : "ASC";
+    $direction = $descending ? 'DESC' : 'ASC';
     $builder->raw("SELECT
         *, (
           6371 * acos (

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dwikipeddos\PeddosLaravelTools\Datas;
+namespace Jaffran\PeddosLaravelTools\Datas;
 
 use Spatie\LaravelData\Data;
 
@@ -20,6 +20,6 @@ class LatLng extends Data
 
     public function toString(): string
     {
-        return $this->lat . "," . $this->lng;
+        return $this->lat . ',' . $this->lng;
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace Dwikipeddos\PeddosLaravelTools\Commands;
+namespace Jaffran\PeddosLaravelTools\Commands;
 
-use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Exception;
 
 class GenerateCrudCommand extends Command
 {
@@ -27,7 +27,6 @@ class GenerateCrudCommand extends Command
     /**
      * Execute the console command.
      */
-
     public function handle()
     {
         try {
@@ -52,32 +51,32 @@ class GenerateCrudCommand extends Command
 
     function generateController(string $name): void
     {
-        $this->generateFileFromStub("Controller", "Controller", "Http/Controllers/", $name);
+        $this->generateFileFromStub('Controller', 'Controller', 'Http/Controllers/', $name);
     }
 
     function generateRequests(string $name): void
     {
-        $this->generateFileFromStub("StoreRequest", "StoreRequest", "Http/Requests/", $name);
-        $this->generateFileFromStub("UpdateRequest", "UpdateRequest", "Http/Requests/", $name);
+        $this->generateFileFromStub('StoreRequest', 'StoreRequest', 'Http/Requests/', $name);
+        $this->generateFileFromStub('UpdateRequest', 'UpdateRequest', 'Http/Requests/', $name);
     }
 
     function generatePolicy(string $name): void
     {
-        $this->generateFileFromStub("Policy", "Policy", "Policies/", $name);
+        $this->generateFileFromStub('Policy', 'Policy', 'Policies/', $name);
     }
 
     function generateQuery(string $name): void
     {
-        $this->generateFileFromStub("Query", "Query", "Queries/", $name);
+        $this->generateFileFromStub('Query', 'Query', 'Queries/', $name);
     }
 
     function generateRoute(string $name): void
     {
-        $route = "Route::apiResource('" . Str::lower($name) . "', " . ucfirst($name) . "Controller::class);";
-        $apiRoutesPath = base_path('routes/api.php'); // Path to the API routes file
-        $content = File::get($apiRoutesPath); // Read the content of the API routes file
-        $newContent = $content . "\n" . $route; // Append the custom route to the existing content
-        File::put($apiRoutesPath, $newContent); // Write the updated content back to the API routes file
+        $route = "Route::apiResource('" . Str::lower($name) . "', " . ucfirst($name) . 'Controller::class);';
+        $apiRoutesPath = base_path('routes/api.php');  // Path to the API routes file
+        $content = File::get($apiRoutesPath);  // Read the content of the API routes file
+        $newContent = $content . "\n" . $route;  // Append the custom route to the existing content
+        File::put($apiRoutesPath, $newContent);  // Write the updated content back to the API routes file
         $this->info('Route created');
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dwikipeddos\PeddosLaravelTools\Traits;
+namespace Jaffran\PeddosLaravelTools\Traits;
 
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;

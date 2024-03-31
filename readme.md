@@ -20,22 +20,23 @@ This package can help you with
 - and many more!
 
 ## Contents
+
 - [Installation](#Installation)
 - [Filtering Queries](#Filtering-Queries)
 - [Generate and Verify OTP](#Generate-and-Verify-OTP)
 - [SingleMedia](#SingleMedia)
 - [Sync Role and Permission](#Sync-Role-and-Permission)
-- [Generating CRUD Files](#Generating-CRUD-Files) 
-- [Generating Actions](#Generating-Actions) 
-- [Generating Enum](#Generating-Enum) 
-- [Generating Query](#Generating-Query) 
+- [Generating CRUD Files](#Generating-CRUD-Files)
+- [Generating Actions](#Generating-Actions)
+- [Generating Enum](#Generating-Enum)
+- [Generating Query](#Generating-Query)
 
 ## Installation
 
 Use [composer](https://getcomposer.org/) dependency manager to install `peddos-laravel-tools`
 
 ```
-composer require dwikipeddos/peddos-laravel-tools
+composer require Jaffran/peddos-laravel-tools
 ```
 
 don't forget to publish the config file by running
@@ -70,12 +71,12 @@ QueryBuilder::for(Model::class)
     ->get();
 ```
 
-This is fine and good... until you need a lot more filtering possibilities, then adding sorting and includes to the equation, this can quickly clutter your controller, so we can move the querying part to seperate class on their own, you can do this by creating a new class that extends `Dwikipeddos\PeddosLaravelTools\Queries\PaginatedQuery` , I usually create a folder called `Queries` and put all my query class there.
+This is fine and good... until you need a lot more filtering possibilities, then adding sorting and includes to the equation, this can quickly clutter your controller, so we can move the querying part to seperate class on their own, you can do this by creating a new class that extends `Jaffran\PeddosLaravelTools\Queries\PaginatedQuery` , I usually create a folder called `Queries` and put all my query class there.
 
 Now all you need to do is fill the filtering and which Model will it query from like
 
 ```php
-use Dwikipeddos\PeddosLaravelTools\Queries\PaginatedQuery;
+use Jaffran\PeddosLaravelTools\Queries\PaginatedQuery;
 
 class UserQuery extends PaginatedQuery
 {
@@ -155,10 +156,10 @@ It Works!
 ## Generate and Verify OTP
 
 To generate an OTP the package using `Action` class which basically just a class that handles a single function, to generate OTP is as simple as
-to read more about action you might want to read [Generating Actions](#Generating-Actions) 
+to read more about action you might want to read [Generating Actions](#Generating-Actions)
 
 ```php
-use Dwikipeddos\PeddosLaravelTools\Actions\GenerateOTPAction;
+use Jaffran\PeddosLaravelTools\Actions\GenerateOTPAction;
 
 (new GenerateOTPAction)->execute(
     4, //number of seed
@@ -181,8 +182,8 @@ This action only works with laravel's default User model, while you can publish 
 
 ## SingleMedia
 
-Single media is a tool to associate your model with only single media using ``Spatie\laravel-medialibrary`` 
-Normally to load single media from model you would need to do : 
+Single media is a tool to associate your model with only single media using `Spatie\laravel-medialibrary`
+Normally to load single media from model you would need to do :
 
 ```php
 $article->getFirstMedia()->getUrl();
@@ -198,7 +199,7 @@ now with this package this is way simpler and easier.
 first of you need to prepare your model like so :
 
 ```php
-use Dwikipeddos\PeddosLaravel\Tools\HasSingleImage;
+use Jaffran\PeddosLaravel\Tools\HasSingleImage;
 use Spatie\MediaLibrary\HasMedia;
 
 class Article implements HasMedia{
@@ -206,7 +207,7 @@ class Article implements HasMedia{
 }
 ```
 
-by default, the package should generate both the image and thumbnail with the collection name of "image" and "thumb" respectively, however you can change this by overrideng ``$defaultSingleImageName``  and the ``$defaultThumbnailName`` like
+by default, the package should generate both the image and thumbnail with the collection name of "image" and "thumb" respectively, however you can change this by overrideng `$defaultSingleImageName` and the `$defaultThumbnailName` like
 
 ```php
 class Article implements HasMedia{
@@ -217,7 +218,7 @@ class Article implements HasMedia{
 }
 ```
 
-also by default the package has image placeholder in case the model has no image at all, you can change the default by doing 
+also by default the package has image placeholder in case the model has no image at all, you can change the default by doing
 
 ```php
 public string $defaultSingleImage = "https://image.com/pepega.png";
@@ -236,10 +237,10 @@ class ArticleController extends Controller{
 }
 ```
 
-by default addSingleImageFromRequest() will use the $defaultSingleImageName in the model as the request key that contains the image but you can do 
+by default addSingleImageFromRequest() will use the $defaultSingleImageName in the model as the request key that contains the image but you can do
 
 ```php
-    $article->addSingleImageFromRequest("my_image_key"); 
+    $article->addSingleImageFromRequest("my_image_key");
     //this will make the package to use "my_image_key" to find the image
 ```
 
@@ -306,14 +307,15 @@ Currently this command only able to generate basic CRUD and cannot generate more
 
 ## Generating Actions
 
-`Actions`,  Actions are well a simple class that can be injected and holds only a single simple function,  this is useful to offload some simple function off the controller.
-to generate this Action all you need to do is 
+`Actions`, Actions are well a simple class that can be injected and holds only a single simple function, this is useful to offload some simple function off the controller.
+to generate this Action all you need to do is
 
 ```
 php artisan make:action {name}
 ```
 
 Replace {name} with the action name, usually it should be verb like "VerifyUserOTP". If you take a look at the generated file at `App\Actions\{Name}`, you should see something like
+
 ```php
 namespace App\Actions;
 
@@ -326,8 +328,8 @@ class VerifyOtpAction
 }
 ```
 
-As you can see Actions only has 1 function which is `execute`,  and this function may or may not take parameters, because this is just like service class but simpler.
-You can use Action class in controller like 
+As you can see Actions only has 1 function which is `execute`, and this function may or may not take parameters, because this is just like service class but simpler.
+You can use Action class in controller like
 
 ```php
 class AuthController{
@@ -344,7 +346,7 @@ or you can manually create it and use it like
 $isOtpValid = (new VerifyOtpAction)->execute($otp);
 ```
 
-so in summary `Actions` are just service class that are so simple it just need 1 function (execute) but you kinda need it in multiple place so you need to make  a new class for it.
+so in summary `Actions` are just service class that are so simple it just need 1 function (execute) but you kinda need it in multiple place so you need to make a new class for it.
 
 ## Generating Enum
 
@@ -357,6 +359,7 @@ With php 8 supporting for Enum, I love it very much to the point i am abusing it
 and then on the DB you can store it an an int column voila, save more space, moreover if you want to add new possible answer all you need to do just assign number to that new answer and boom easy peasy.
 
 a typical php enum should look like this :
+
 ```php
 namespace App\Enums;
 
@@ -369,11 +372,12 @@ enum EmployeeAccomodation: int
 ```
 
 to create one using this package you can use this command :
+
 ```
 php artisan make:enum {name}
 ```
 
-replace the {name} with the name of your enum, this should create a new file in ``App\Enums``. I know this is also a simple class that well probably don't need to make command for it but hey, i am lazy so here you go.
+replace the {name} with the name of your enum, this should create a new file in `App\Enums`. I know this is also a simple class that well probably don't need to make command for it but hey, i am lazy so here you go.
 to convert number to its own enum in laravel you can do :
 
 ```php
@@ -404,13 +408,13 @@ IT WORKS!
 
 ## Generating Query
 
-Query classes are one of the most powerful card i have in this package. Usually a query is automatically generated by ``php artisan generate:all {name}`` but if for some reason you don't use it and want to make a query you can use this command to generate query
+Query classes are one of the most powerful card i have in this package. Usually a query is automatically generated by `php artisan generate:all {name}` but if for some reason you don't use it and want to make a query you can use this command to generate query
 
 ```
 php artisan make:query {name}
 ```
 
-Replace {name} with the name of your query, and it should be created in ``App\Queries\``
+Replace {name} with the name of your query, and it should be created in `App\Queries\`
 as for how to use the query you might want to read [Filtering Queries](#Filtering-Queries)
 
 IT WORKS!

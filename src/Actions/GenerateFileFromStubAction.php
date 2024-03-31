@@ -1,6 +1,6 @@
 <?php
 
-namespace Dwikipeddos\PeddosLaravelTools\Actions;
+namespace Jaffran\PeddosLaravelTools\Actions;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;

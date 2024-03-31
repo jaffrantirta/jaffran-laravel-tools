@@ -1,9 +1,9 @@
 <?php
 
-namespace Dwikipeddos\PeddosLaravelTools\Middleware;
+namespace Jaffran\PeddosLaravelTools\Middleware;
 
-use Closure;
 use Illuminate\Http\Request;
+use Closure;
 
 class LocaleHeader
 {

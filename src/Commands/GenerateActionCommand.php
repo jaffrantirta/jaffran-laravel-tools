@@ -1,10 +1,10 @@
 <?php
 
-namespace Dwikipeddos\PeddosLaravelTools\Commands;
+namespace Jaffran\PeddosLaravelTools\Commands;
 
-use Dwikipeddos\PeddosLaravelTools\Actions\GenerateFileFromStubAction;
-use Exception;
 use Illuminate\Console\Command;
+use Jaffran\PeddosLaravelTools\Actions\GenerateFileFromStubAction;
+use Exception;
 
 class GenerateActionCommand extends Command
 {
@@ -29,7 +29,7 @@ class GenerateActionCommand extends Command
     {
         try {
             $name = $this->argument('name');
-            $action->execute("Action", "Action", "Actions/", $name);
+            $action->execute('Action', 'Action', 'Actions/', $name);
             $this->info("$name has been fully generated!");
             return Command::SUCCESS;
         } catch (Exception $e) {

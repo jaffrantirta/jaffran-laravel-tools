@@ -1,6 +1,6 @@
 <?php
 
-namespace Dwikipeddos\PeddosLaravelTools\Commands;
+namespace Jaffran\PeddosLaravelTools\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
@@ -25,14 +25,14 @@ class UpdatePermissionRoleCommand extends Command
 
     /**
      * All Roles in database
-     * 
+     *
      * @var Collection
      */
     protected $allRoles;
 
     /**
      * All permission in database
-     * 
+     *
      * @var Collection
      */
     protected $allPermissions;
@@ -51,7 +51,7 @@ class UpdatePermissionRoleCommand extends Command
 
         $this->insertMissingRoles($permissions);
 
-        //refresh roles
+        // refresh roles
         $this->allRoles = Role::all();
 
         foreach ($permissions as $permission) {
@@ -66,7 +66,7 @@ class UpdatePermissionRoleCommand extends Command
             if ($roleModels == null) {
                 $this->warn('role is not found when searching for permission ' . $permission['name']);
             }
-            $this->line("syncing role for permission " . $permissionModel->name);
+            $this->line('syncing role for permission ' . $permissionModel->name);
             $permissionModel->syncRoles($roleModels);
         }
 
@@ -89,7 +89,7 @@ class UpdatePermissionRoleCommand extends Command
                 ];
             }
             Role::insert($newRoles);
-            $this->info("added new " . count($newRoles) . " roles");
+            $this->info('added new ' . count($newRoles) . ' roles');
         }
     }
 }

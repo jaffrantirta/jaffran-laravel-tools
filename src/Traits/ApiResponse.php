@@ -1,12 +1,11 @@
 <?php
 
-namespace Dwikipeddos\PeddosLaravelTools\Traits;
+namespace Jaffran\PeddosLaravelTools\Traits;
 
 use Illuminate\Http\Response;
 
 trait ApiResponse
 {
-
     public function responseOk(mixed $data = null): Response
     {
         return response($data, Response::HTTP_OK);
