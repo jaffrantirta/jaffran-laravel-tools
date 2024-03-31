@@ -14,7 +14,7 @@ class UpdatePermissionRoleCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'peddos-permission-role:sync';
+    protected $signature = 'jaffran-permission-role:sync';
 
     /**
      * The console command description.
