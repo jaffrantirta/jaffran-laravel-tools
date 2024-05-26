@@ -2,7 +2,7 @@
 
 namespace Jaffran\PeddosLaravelTools\Traits;
 
-use Spatie\Image\Manipulations;
+// use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -32,12 +32,12 @@ trait HasSingleImage
             ->singleFile();
     }
 
-    public function registerMediaConversions(?Media $media = null): void
-    {
-        $this
-            ->addMediaConversion($this->getThumbnailName())
-            ->fit(Manipulations::FIT_CONTAIN, 100, 100);
-    }
+    // public function registerMediaConversions(?Media $media = null): void
+    // {
+    //     $this
+    //         ->addMediaConversion($this->getThumbnailName())
+    //         ->fit(Manipulations::FIT_CONTAIN, 100, 100);
+    // }
 
     public function getSingleImage()
     {
