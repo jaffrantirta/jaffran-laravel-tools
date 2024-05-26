@@ -2,10 +2,10 @@
   "name": "jaffran/jaffran-laravel-tools",
   "description": "tools for laravel development",
   "require": {
-    "spatie/laravel-medialibrary": "dev-main",
-    "spatie/laravel-activitylog": "dev-main",
-    "spatie/laravel-query-builder": "dev-main",
-    "spatie/laravel-data": "dev-main"
+    "spatie/laravel-data": "^4.6",
+    "spatie/laravel-query-builder": "^6.0",
+    "spatie/laravel-activitylog": "^4.8",
+    "spatie/laravel-medialibrary": "^11.5"
   },
   "license": "MIT",
   "autoload": {
@@ -19,7 +19,7 @@
       "email": "jaffrantirta@icloud.com"
     }
   ],
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "extra": {
     "laravel": {
       "providers": [
